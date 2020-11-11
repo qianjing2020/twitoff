@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 migrate = Migrate()
 
-
+# book will be a table in twitoff-dev.db, double check with TablePlus
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
