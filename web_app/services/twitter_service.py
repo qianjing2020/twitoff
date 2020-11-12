@@ -22,9 +22,11 @@ def twitter_api():
     return api
 
 
-if __name__ == "__main__":
+api = twitter_api()
 
+if __name__ == "__main__":
     api = twitter_api()
+    
     user = api.get_user("elonmusk")
     print("USER", user)
     print(user.screen_name)

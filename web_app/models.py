@@ -16,6 +16,23 @@ class Book(db.Model):
     def __repr__(self):
         return f"<Book {self.id} {self.title}>"
 
+# classes for twitter data
+class User(db.Model):
+    id = db.Column(db.BigInteger, primary_key=True)
+    screen_name = db.Column(db.String(128), nullable=False)
+    name = db.Column(db.String)
+    location = db.Column(db.String)
+    followers = db.Column(db.Integer)
+    latest_tweet_id = db.Column(db.BigInteger)
+
+class Tweet(db.Model):
+    id = db.Column(db.BigInteger, primary_key=True)
+    # user_id column is a foreigh key, point to user table column id
+    user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"))
+    full_text = db.Column(db.String(500))
+    embedding = db.Column(db.PickleType)
+    # when invoking user on any Tweet, it will automatic form a relationship to corresponding user record, and invoke .user on any Tweet and bidirectionaly also associate tweet with a user, so user.tweets and we will automatic join get all tweets from the user. and tweet.user will get the user from the user table. 
+    user = db.relationship("User", backref=db.backref("tweets", lazy=True))
 
 def parse_records(database_records):
     """
