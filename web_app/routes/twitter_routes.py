@@ -2,10 +2,8 @@
 
 from flask import Blueprint, render_template, jsonify
 from web_app.models import db, User, Tweet, parse_records
-from web_app.services.twitter_service import api as twitter_api_client
+from web_app.services.twitter_service import twitter_api_client
 from web_app.services.basilica_service import basilica_api_client
-
-# from web_app.services.basilica_service import basilica_api_client
 
 twitter_routes = Blueprint("twitter_routes", __name__)
 
@@ -28,24 +26,22 @@ def fetch_user(screen_name=None):
     # return "OK"
 
     # fetch tweets
-    tweets = twitter_api_client.user_timeline(        screen_name, tweet_mode="extended", count=150)
+    tweets = twitter_api_client.user_timeline(screen_name, tweet_mode="extended", count=100)
     print("STATUSES COUNT:", len(tweets))
-
    
     # TODO: explore using the zip() function maybe...
         
     for tweet in tweets:
         print(tweet.full_text)
         print("----")
-        
-        breakpoint()
-        embedding = basilica_api_client.embed_sentence(tweet.full_text, model="twitter") 
+
+        # embedding = basilica_api_client.embed_sentence(tweet.full_text, model="twitter") 
 
         ## get existing tweet from the db or initialize a new one:
         db_tweet = Tweet.query.get(tweet.id) or Tweet(id=tweet.id)
         db_tweet.user_id = tweet.author.id  # or db_user.id
         db_tweet.full_text = tweet.full_text  
-        db_tweet.embedding = embedding
+        # db_tweet.embedding = embedding
         db.session.add(db_tweet)
         
     db.session.commit()

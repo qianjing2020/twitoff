@@ -12,35 +12,26 @@ TWITTER_ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN")
 TWITTER_ACCESS_TOKEN_SECRET = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 
 
-def twitter_api():
-    auth = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_API_SECRET)
-    auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
-    print("AUTH", auth)
-    api = tweepy.API(auth)
-    print("API", api)
-    #print(dir(api))
-    return api
+class TwitterAPI():
+    def __init__(self):
+        self.auth = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_API_SECRET)
+        self.auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+        # print("AUTH", auth)
+        self.connect = tweepy.API(self.auth)
 
-
-api = twitter_api()
+twitter_api_client = TwitterAPI().connect
 
 if __name__ == "__main__":
-    api = twitter_api()
+    api = TwitterAPI().connect
     
-    user = api.get_user("elonmusk")
-    print("USER", user)
-    print(user.screen_name)
-    print(user.name)
-    print(user.followers_count)
+    user = api.get_user("kamalaharris")
+    # print("USER", user)
+    print("User screen name:", user.screen_name)
+    print("User name: ", user.name)
+    print("Followed by: ", user.followers_count)
 
     tweets = api.user_timeline("kamalaharris", tweet_mode="extended" )
-
-    tweet = tweets[0]
-    print(tweet.id, tweet.full_text)
-    #public_tweets = api.home_timeline()
-    #
-    #for tweet in public_tweets:
-    #    print(type(tweet)) #> <class 'tweepy.models.Status'>
-    #    #print(dir(tweet))
-    #    print(tweet.text)
-    #    print("-------------")
+    
+    latest5 = tweets[:5]
+    for tweet in latest5:
+        print(tweet.id, tweet.full_text)
