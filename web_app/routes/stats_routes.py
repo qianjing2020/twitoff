@@ -17,15 +17,24 @@ def predict():
     tweet_text = request.form["tweet_text"]
 
     print("-----------------")
-    print("FETCHING TWEETS FROM THE DATABASE...")
-   
-    #TODO
-
+    print("FETCHING TWEETS FROM THE DATABASE...")   
+    user_a = User.query.filter_by(screen_name = screen_name_a).first()
+    user_b = User.query.filter_by(screen_name = screen_name_b).first()
+    
+    user_a_tweets = user_a.tweets 
+    user_b_tweets = user_b.tweets 
+    print('Fetched Tweets', len(user_a_tweets)), len(user_b_tweets)
     print("-----------------")
     print("TRAINING THE MODEL...")
-    
+    breakpoint()
+    # get embeddings from our database
+    embeddings = []
+    labels = []
+   
     classifier = LogisticRegression()
-    # TODO: classifier.fit(___________, ___________)
+    # Input: the embeddings 
+    # output: lables: screen_names
+    classifier.fit(embeddings, labels)
 
     print("-----------------")
     print("MAKING A PREDICTION...")

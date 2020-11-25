@@ -23,15 +23,21 @@ twitter_api_client = TwitterAPI().connect
 
 if __name__ == "__main__":
     api = TwitterAPI().connect
+
+    # get user
+    screen_name = "billgates" # kamalaharris
+    user = api.get_user(screen_name)
     
-    user = api.get_user("kamalaharris")
-    # print("USER", user)
     print("User screen name:", user.screen_name)
     print("User name: ", user.name)
     print("Followed by: ", user.followers_count)
 
-    tweets = api.user_timeline("kamalaharris", tweet_mode="extended" )
-    
-    latest5 = tweets[:5]
-    for tweet in latest5:
+    # get tweets
+    tweets = api.user_timeline(screen_name, tweet_mode="extended" )
+    print(type(tweets))
+    # from pprint import pprint
+    # pprint(tweets[0]._json)
+
+    last5 = tweets[:5]
+    for tweet in last5:
         print(tweet.id, tweet.full_text)
