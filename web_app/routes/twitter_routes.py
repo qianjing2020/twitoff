@@ -5,8 +5,6 @@ from web_app.models import db, User, Tweet, parse_records
 from web_app.services.twitter_service import twitter_api_client
 from web_app.services.basilica_service import basilica_api_client
 
-basilica_conn = basilica_api_client()
-
 twitter_routes = Blueprint("twitter_routes", __name__)
 
 @twitter_routes.route("/users/<screen_name>/fetch") # dynamic route with user-input screen_name
@@ -36,10 +34,9 @@ def fetch_user(screen_name=None):
 
     # Get tweets and write to db    
     all_tweet_texts = [tweet.full_text for tweet in tweets]
-
-   
-    
-    embeddings = list(basilica_conn.embed_sentences(all_tweet_texts, model='twitter'))
+ 
+    embeddings = list(basilica_api_client.embed_sentences(
+        all_tweet_texts, model='twitter'))
     print("Number of embeddings", len(embeddings))
     
     for index, tweet in enumerate(tweets):

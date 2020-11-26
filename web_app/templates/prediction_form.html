@@ -4,9 +4,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h2>Prediction Time</h2>
+    <h2>Predict Tweet</h2>
 
-    <p>Use the form below to predict which user is more likely to say a given tweet...</p>
+    <p>Use the form below to predict which user is more likely to say a given tweet:</p>
 
     <form action="/predict" method="POST">
 
@@ -14,7 +14,7 @@
         <label>Twitter User A:</label>
         <select name="screen_name_a">
             <option value="elonmusk" selected="true">@elonmusk</option>
-            <option value="kamalaharris">@KamalaHarris</option>
+            <option value="KamalaHarris">@KamalaHarris</option>
             <option value="s2t2">@s2t2</option>
         </select>
         <br>
@@ -23,7 +23,7 @@
         <label>Twitter User B:</label>
         <select name="screen_name_b">
             <option value="elonmusk">@elonmusk</option>
-            <option value="kamalaharris" selected="true">@KamalaHarris</option>
+            <option value="KamalaHarris" selected="true">@KamalaHarris</option>
             <option value="s2t2">@s2t2</option>
           </select>
         <br>
