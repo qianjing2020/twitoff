@@ -24,7 +24,7 @@ def list_books():
 def list_books_for_humans():
     book_records = Book.query.all()
     books = parse_records(book_records)
-    return render_template("books.html", message="Here's some books", books=books)
+    return render_template("books.html", message="Here are existing books in our database: ", books=books)
 
 
 @book_routes.route("/books/new")

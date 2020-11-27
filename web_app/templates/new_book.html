@@ -1,13 +1,13 @@
 <!-- web_app/templates/new_book.html -->
 
-{% extends "bootstrap_layout.html" %}
+{% extends "bootstrap_carousel_layout.html" %}
 {% set active_page = "new_book" %}
 
 {% block content %}
 
-<h1>New Book Page</h1>
+<h2>New Book Page</h2>
 
-<p>Please fill out the form and submit to create a new book!</p>
+<p>Please fill out the form for a new book and submit to our database!</p>
 
 <form action="/books/create" method="POST">
 
