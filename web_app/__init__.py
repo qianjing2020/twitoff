@@ -12,11 +12,11 @@ from web_app.routes.twitter_routes import twitter_routes
 from web_app.routes.stats_routes import stats_routes
 
 load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY")
 
-DATABASE_URI = "sqlite:///twitoff_dev.db"  # using relative filepath
-#DATABASE_URI = "sqlite:////Users/Username/Desktop/your-repo-name/web_app_99.db" # using absolute filepath on Mac (recommended)
-#DATABASE_URI = "sqlite:///C:\\Users\\Username\\Desktop\\your-repo-name\\web_app_99.db" # using absolute filepath on Windows (recommended) h/t: https://stackoverflow.com/a/19262231/670433
+SECRET_KEY = os.getenv("SECRET_KEY", default = "super secret")
+DATABASE_URI = os.getenv("DATABASE_URI")
+
+
 
 def create_app():
     app = Flask(__name__)
