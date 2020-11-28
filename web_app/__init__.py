@@ -26,8 +26,6 @@ def create_app():
     
     migrate.init_app(app, db)
     
-    db.create_all() # add this for Heroku deploy debug
-    
     app.register_blueprint(home_routes)
     app.register_blueprint(book_routes)
     app.register_blueprint(twitter_routes)
