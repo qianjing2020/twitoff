@@ -14,3 +14,6 @@ Run the web app:
 ```sh
 FLASK_APP=web_app flask run
 ```
+Heroku postgresql 
+
+source: https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres

@@ -23,6 +23,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     
     db.init_app(app)
+    db.create_all() # add this for Heroku deploy debug
     migrate.init_app(app, db)
 
     app.register_blueprint(home_routes)
