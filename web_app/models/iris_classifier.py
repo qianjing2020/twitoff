@@ -6,9 +6,10 @@ import pickle
 from sklearn.datasets import load_iris
 from sklearn.linear_model import LogisticRegression  # for example
 
-MODEL_FILEPATH = os.path.join(os.path.dirname(
-    __file__), "..", "models", "latest_model.pkl")
+SAVE_MODEL = os.path.join(os.path.dirname(
+    __file__), "trained_classifier_iris.pkl")
 
+# print(MODEL_FILEPATH)  #> web_app/models/../models/latest_model.pkl
 
 def train_and_save_model():
     print("TRAINING THE MODEL...")
@@ -19,17 +20,17 @@ def train_and_save_model():
     classifier.fit(X, y)
 
     print("SAVING THE MODEL...")
-    with open(MODEL_FILEPATH, "wb") as model_file:
-        pickle.dump(classifier, model_file)
+    with open(SAVE_MODEL, "wb") as f:
+        pickle.dump(classifier, f)
 
     return classifier
 
 
 def load_model():
     print("LOADING THE MODEL...")
-    with open(MODEL_FILEPATH, "rb") as model_file:
-        saved_model = pickle.load(model_file)
-    return saved_model
+    with open(SAVE_MODEL, "rb") as f:
+        trained_model = pickle.load(f)
+    return trained_model
 
 
 if __name__ == "__main__":
@@ -39,8 +40,9 @@ if __name__ == "__main__":
     clf = load_model()
     print("CLASSIFIER:", clf)
 
-    # just to have some data to use when predicting
+    # check if classifier can predict
     X, y = load_iris(return_X_y=True)
+
     inputs = X[:2, :]
     print(type(inputs), inputs)
 
