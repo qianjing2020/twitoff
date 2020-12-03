@@ -1,6 +1,7 @@
 # Twitoff
 Predict the twitter user of a tweet: model return the most likely twitter users who would have twitted the tweet. 
-### Setup the database:
+
+### Specs on database handling:
 
 Run both when changing the schema:
 ~~~sh
