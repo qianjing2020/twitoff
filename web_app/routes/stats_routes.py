@@ -1,4 +1,5 @@
 # web_app/routes/stats_routes.py
+# prediction for tweet user
 
 from flask import Blueprint, request, jsonify, render_template
 from sklearn.linear_model import LogisticRegression # for example

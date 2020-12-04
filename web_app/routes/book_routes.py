@@ -35,8 +35,8 @@ def new_book():
 @book_routes.route("/books/create", methods=["POST"])
 def create_book():
     book_by_form = dict(request.form)
-    #print("FORM DATA:", book_by_form)
-
+    print("FORM DATA:", book_by_form)
+    
     # add new book to database
     new_book = Book(title=request.form["book_title"], author_id=request.form["author_name"])
     db.session.add(new_book)
