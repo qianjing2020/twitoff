@@ -1,14 +1,18 @@
 # web_app/models.py
 
+# The data that will be stored in the database will be represented by a collection of classes, usually called database models.
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-db = SQLAlchemy()
+db = SQLAlchemy() # the db object
 
-migrate = Migrate()
+migrate = Migrate() # the migration engine
 
-# book will be a table in twitoff-dev.db, double check with TablePlus
+"""Use db.Model as base model to create model classes for database schema"""
+# class for book data, correspond to table "book" in database
 class Book(db.Model):
+    # no need to define a __init__ method: SQLAlchemy models has an implicit constructor
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
     author_id = db.Column(db.String(128))
@@ -25,13 +29,16 @@ class User(db.Model):
     followers = db.Column(db.Integer)
     latest_tweet_id = db.Column(db.BigInteger)
 
+    def __repr__(self):
+        return f"<User {self.id} {self.screen_name}>"
+
 # class for twitter tweets data
 class Tweet(db.Model):
     id = db.Column(db.BigInteger, primary_key=True)
     # user_id column is a foreigh key, point to user table column id
     user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"))
     full_text = db.Column(db.String(500))
-    embedding = db.Column(db.PickleType)
+    #embedding = db.Column(db.PickleType)
     # when invoking user on any Tweet, it will automaticaly form a relationship to corresponding user record, and invoke .user on any Tweet and bidirectionaly also associate tweet with a user, so user.tweets will automatically get all tweets from the user. and tweet.user will get the user from the user table. 
     user = db.relationship("User", backref=db.backref("tweets", lazy=True))
 

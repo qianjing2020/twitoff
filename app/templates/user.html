@@ -1,0 +1,12 @@
+<!-- twitoff_app/templates/user.html -->
+
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "user" %}
+
+{% block content %}
+    <h3> @{{ user.screen_name }}'s recent 100 tweets have been saved to database! Here are a preview of the latest 10: </h3>
+
+    {% for tweet in tweets %}
+    <div><p> {{tweet.full_text }} </p></div>
+    {% endfor %}
+{% endblock %}

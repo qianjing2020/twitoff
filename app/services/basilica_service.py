@@ -12,8 +12,6 @@ basilica_api_client= basilica.Connection(API_KEY)
 
 print(type(basilica_api_client))  
 
-
-
 if __name__ == "__main__":
 
     # Note that basilica methods:  embed_sentence for one sentence, and embed_sentences for a list of sentences

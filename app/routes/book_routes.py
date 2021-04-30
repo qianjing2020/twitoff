@@ -1,8 +1,8 @@
-# web_app/routes/book_routes.py
+# twitoff_app/routes/book_routes.py
 
-from web_app.models import parse_records
+from twitoff_app.models import parse_records
 from flask import Blueprint, jsonify, request, render_template, flash, redirect
-from web_app.models import Book, db, parse_records
+from twitoff_app.models import Book, db, parse_records
 
 book_routes = Blueprint("book_routes", __name__)
 

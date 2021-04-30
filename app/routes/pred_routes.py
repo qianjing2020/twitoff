@@ -1,20 +1,24 @@
-# web_app/routes/stats_routes.py
+# twitoff_app/routes/prediction_routes.py
 # prediction for tweet user
 
 from flask import Blueprint, request, jsonify, render_template
-from sklearn.linear_model import LogisticRegression # for example
-from web_app.models import User, Tweet
-# from web_app.services.basilica_service import basilica_api_client
-from web_app.services.nlp_service import DocCompair
+from sklearn.linear_model import LogisticRegression 
 
+from twitoff_app.models import User, Tweet
 
-stats_routes = Blueprint("stats_routes", __name__)
+# from twitoff_app.services.basilica_service import basilica_api_client
+from twitoff_app.services.nlp_service import DocCompare
 
-@stats_routes.route("/predict", methods=["POST"])
+pred_routes = Blueprint("pred_routes", __name__)
+
+@pred_routes.route("/predict", methods=["POST"])
 def predict():
+    """
+    The tweets from two users will be combined to generate a dictionary, and be used to convert tweet to vectors (bow). Then a regression classifier will be trained and predict new tweet label. 
+    """
     print("PREDICT ROUTE...")
     print("FORM DATA:", dict(request.form))
-    #> {'screen_name_a': 'elonmusk', 'screen_name_b': 's2t2', 'tweet_text': 'Example tweet text here'}
+    
     screen_name_a = request.form["screen_name_a"]
     screen_name_b = request.form["screen_name_b"]
     tweet_text = request.form["tweet_text"]
@@ -31,6 +35,10 @@ def predict():
     print("-----------------")
     print("TRAINING THE MODEL...")
     
+    breakpoint()
+    # create a dictionary use the combined tweets
+    
+    # dc = DocCompare()
     # get embeddings from our database for model
     # note model Input: the embeddings 
     # output: lables: screen_names

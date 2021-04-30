@@ -17,10 +17,9 @@ $ flask db migrate
 
 $ flask db upgrade 
 
-$ python    # go to python to create all tables for the db
+$ flask shell    # go to flash python shell to create all tables for the db
 >>> from web_app.models import db
->>> from web_app import create_app
->>> db.create_all(app=create_app())
+>>> db.create_all()
 
 ~~~
 

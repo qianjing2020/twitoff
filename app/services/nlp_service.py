@@ -6,7 +6,7 @@ from pprint import pprint
 
 from nltk.tokenize import TweetTokenizer
 
-class DocCompair():
+class DocCompare():
     
     def __init__(self, texts):
         """input: texts is a list of strings"""

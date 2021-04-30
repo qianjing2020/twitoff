@@ -1,2 +1,2 @@
-FLASK_APP=web_app
+FLASK_APP=twitoff_app
 FLASK_ENV=development

@@ -1,11 +1,21 @@
-<!-- web_app/templates/prediction_form.html -->
+<!-- twitoff_app/templates/prediction_form.html -->
 
 
 {% extends "bootstrap_layout.html" %}
 {% set active_page = "prediction_form" %}
 
 {% block content %}
-    <h2>Predict Tweet</h2>
+    <h2>Most Likely Tweet - Workflow</h2>
+    <h4>Step 1: Fetch twitter data</h4>
+    
+    <p>In your browser append to url "/users/user-screen-name/fetch" and hit enter. Do the same for another user. </p>
+    
+    <p>Example: 
+
+        Append " /users/elonmusk/fetch" to your current url will fetch tweeter user elonmusk data to database. 
+    </p>
+
+    <h4>Step 2: Predict Tweet</h4>
 
     <p>Use the form below to predict which user is more likely to say a given tweet:</p>
 
@@ -16,7 +26,7 @@
         <select name="screen_name_a">
             <option value="elonmusk" selected="true">@elonmusk</option>
             <option value="KamalaHarris">@KamalaHarris</option>
-            <option value="s2t2">@s2t2</option>
+            
         </select>
         <br>
 
@@ -25,7 +35,7 @@
         <select name="screen_name_b">
             <option value="elonmusk">@elonmusk</option>
             <option value="KamalaHarris" selected="true">@KamalaHarris</option>
-            <option value="s2t2">@s2t2</option>
+            
           </select>
         <br>
 
