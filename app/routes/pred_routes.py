@@ -34,11 +34,8 @@ def predict():
 
     print("-----------------")
     print("TRAINING THE MODEL...")
+
     
-    breakpoint()
-    # create a dictionary use the combined tweets
-    
-    # dc = DocCompare()
     # get embeddings from our database for model
     # note model Input: the embeddings 
     # output: lables: screen_names
